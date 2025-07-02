@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Cartao {
+  id                    String   @id @default(cuid())
+  username              String   @unique // para a URL
+  nomeGroomer          String
+  nomeEstabelecimento  String?
+  foto                 String?
+  telefone             String
+  instagram            String?
+  endereco             String
+  horarios             String
+  servicos             String   // JSON string simples
+  precos               String?  // JSON string simples
+  emailEdicao          String   // para editar depois
+  criadoEm             DateTime @default(now())
+  atualizadoEm         DateTime @updatedAt
+
+  @@map("cartoes")
+}
