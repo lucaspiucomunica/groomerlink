@@ -1,103 +1,266 @@
-import Image from "next/image";
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
+      {/* Header */}
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xl">G</span>
+              </div>
+              <h1 className="ml-3 text-2xl font-bold text-gray-900">GroomerLink</h1>
+            </div>
+            <Link 
+              href="/criar"
+              className="bg-amber-500 hover:bg-amber-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+            >
+              Criar Meu Cartão
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      {/* Hero Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-5xl font-bold text-gray-900 mb-6">
+              Seu cartão digital 
+              <span className="text-green-600"> profissional</span>
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Crie um cartão digital elegante com todas suas informações profissionais. 
+              Perfeito para colocar na bio do Instagram, WhatsApp Status e redes sociais.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <Link 
+                href="/criar"
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-medium text-lg transition-colors text-center"
+              >
+                Criar Cartão Grátis
+              </Link>
+              <Link 
+                href="#exemplo"
+                className="border-2 border-green-600 text-green-600 hover:bg-green-50 px-8 py-4 rounded-lg font-medium text-lg transition-colors text-center"
+              >
+                Ver Exemplo
+              </Link>
+            </div>
+
+            <div className="flex items-center gap-8 text-sm text-gray-500">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>100% Gratuito</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Sem instalação</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Mobile-first</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:text-center">
+            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm mx-auto">
+              <div className="text-center mb-6">
+                <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-white text-2xl">🐕</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Maria Silva</h3>
+                <p className="text-gray-600">Pet Shop da Maria</p>
+              </div>
+
+              <div className="space-y-3 mb-6">
+                <button className="w-full bg-green-500 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2">
+                  📱 WhatsApp
+                </button>
+                <button className="w-full bg-pink-500 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2">
+                  📷 Instagram
+                </button>
+              </div>
+
+              <div className="space-y-2 text-sm">
+                <p className="text-gray-600">📍 Rua das Flores, 123 - SP</p>
+                <p className="text-gray-600">🕒 Seg-Sex: 8h às 18h</p>
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-gray-100">
+                <p className="text-xs text-gray-400 text-center">groomerlink.com/maria-silva</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Por que usar o GroomerLink?
+            </h2>
+            <p className="text-xl text-gray-600">
+              Simplifique a forma como seus clientes te encontram e entram em contato
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🔗</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Um só link</h3>
+              <p className="text-gray-600">
+                Todas suas informações em uma única URL personalizada para compartilhar
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📱</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Mobile-first</h3>
+              <p className="text-gray-600">
+                Otimizado para celular, onde seus clientes mais acessam
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">⚡</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Fácil de usar</h3>
+              <p className="text-gray-600">
+                Crie em minutos, sem precisar de conhecimento técnico
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Aumente seus agendamentos
+              </h2>
+              <div className="space-y-6">
+                <div className="flex gap-4">
+                  <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Contato direto pelo WhatsApp</h3>
+                    <p className="text-gray-600">Clientes podem te chamar com um clique</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Mostre seus serviços e preços</h3>
+                    <p className="text-gray-600">Transparência que gera confiança</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Horários sempre atualizados</h3>
+                    <p className="text-gray-600">Evite ligações fora do horário</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Localização clara</h3>
+                    <p className="text-gray-600">Facilite para o cliente te encontrar</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:text-center">
+              <div className="bg-white rounded-2xl shadow-xl p-8">
+                <h3 className="text-xl font-bold text-center mb-6">Exemplo de uso:</h3>
+                <div className="space-y-4">
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <p className="text-sm text-gray-700">
+                      💬 "Coloque groomerlink.com/seunome na bio do Instagram"
+                    </p>
+                  </div>
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <p className="text-sm text-gray-700">
+                      📧 "Envie por email para clientes"
+                    </p>
+                  </div>
+                  <div className="bg-purple-50 p-4 rounded-lg">
+                    <p className="text-sm text-gray-700">
+                      📱 "Compartilhe no WhatsApp Status"
+                    </p>
+                  </div>
+                  <div className="bg-yellow-50 p-4 rounded-lg">
+                    <p className="text-sm text-gray-700">
+                      🏪 "Cole na vitrine do seu petshop"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-green-600 py-16">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Pronto para criar seu cartão digital?
+          </h2>
+          <p className="text-xl text-green-100 mb-8">
+            Leva menos de 5 minutos e é completamente gratuito
+          </p>
+          <Link 
+            href="/criar"
+            className="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 transition-colors"
+          >
+            Criar Meu Cartão Agora
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center mb-4 md:mb-0">
+              <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold">G</span>
+              </div>
+              <span className="ml-2 text-white font-semibold">GroomerLink</span>
+            </div>
+            <p className="text-gray-400 text-sm">
+              © 2025 GroomerLink. Cartão digital para pet groomers.
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
