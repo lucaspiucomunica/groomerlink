@@ -1,0 +1,2 @@
+# Este arquivo garante que o diretório uploads seja mantido no Git
+# Os arquivos de upload dos usuários não são versionados por questões de segurança e espaço
