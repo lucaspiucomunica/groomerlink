@@ -192,7 +192,7 @@ export default function EditarCartao() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && verifyEmail()}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
                 placeholder="seu@email.com"
               />
             </div>
@@ -305,7 +305,7 @@ export default function EditarCartao() {
                       type="text"
                       value={formData.nomeGroomer}
                       onChange={(e) => updateFormData('nomeGroomer', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
                     />
                   </div>
 
@@ -317,7 +317,7 @@ export default function EditarCartao() {
                       type="text"
                       value={formData.nomeEstabelecimento}
                       onChange={(e) => updateFormData('nomeEstabelecimento', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
                     />
                   </div>
 
@@ -329,7 +329,7 @@ export default function EditarCartao() {
                       type="tel"
                       value={formData.telefone}
                       onChange={(e) => updateFormData('telefone', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
                     />
                   </div>
 
@@ -345,7 +345,7 @@ export default function EditarCartao() {
                         type="text"
                         value={formData.instagram}
                         onChange={(e) => updateFormData('instagram', e.target.value)}
-                        className="flex-1 p-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                        className="flex-1 p-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
                       />
                     </div>
                   </div>
@@ -358,7 +358,7 @@ export default function EditarCartao() {
                       value={formData.endereco}
                       onChange={(e) => updateFormData('endereco', e.target.value)}
                       rows={3}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
                     />
                   </div>
 
@@ -374,7 +374,7 @@ export default function EditarCartao() {
                         type="text"
                         value={formData.username}
                         onChange={(e) => updateFormData('username', e.target.value)}
-                        className="flex-1 p-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                        className="flex-1 p-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
                         placeholder="seu-nome"
                       />
                     </div>
@@ -442,7 +442,7 @@ export default function EditarCartao() {
                         value={servico.nome}
                         onChange={(e) => updateServico(index, 'nome', e.target.value)}
                         placeholder="Ex: Banho e Tosa"
-                        className="flex-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                        className="flex-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
                       />
                       <div className="flex items-center gap-2">
                         <span className="text-gray-500">R$</span>
@@ -451,7 +451,7 @@ export default function EditarCartao() {
                           value={servico.preco || ''}
                           onChange={(e) => updateServico(index, 'preco', Number(e.target.value))}
                           placeholder="40"
-                          className="w-20 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                          className="w-20 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
                         />
                       </div>
                       {formData.servicos.length > 1 && (
