@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { MOCK_DATA } from '@/lib/config'
+import ImageUpload from '@/components/ImageUpload'
 
 interface FormData {
   nomeGroomer: string
@@ -45,6 +46,7 @@ export default function EditarCartao() {
     isFreelancer: false,
     horarios: MOCK_DATA.horarios,
     servicos: [{ nome: '', preco: 0 }],
+    foto: '',
   })
 
   const [updatedCard, setUpdatedCard] = useState<{
@@ -149,6 +151,7 @@ export default function EditarCartao() {
           emailEdicao: email,
           horarios: JSON.stringify(formData.horarios),
           servicos: JSON.stringify(formData.servicos.filter(s => s.nome.trim())),
+          foto: formData.foto || null,
         }),
       })
 
@@ -384,6 +387,16 @@ export default function EditarCartao() {
                     <p className="text-xs text-gray-500 mt-1">
                       Apenas letras minúsculas, números e hífens
                     </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Foto de perfil (opcional)
+                    </label>
+                    <ImageUpload
+                      currentImage={formData.foto}
+                      onImageUpload={(imageUrl) => updateFormData('foto', imageUrl)}
+                    />
                   </div>
                 </div>
               </div>

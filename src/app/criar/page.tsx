@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { APP_CONFIG, MOCK_DATA } from '@/lib/config'
+import ImageUpload from '@/components/ImageUpload'
 
 interface FormData {
   nomeGroomer: string
@@ -38,6 +39,7 @@ export default function CriarCartao() {
     isFreelancer: false,
     horarios: MOCK_DATA.horarios,
     servicos: [{ nome: '', preco: 0 }],
+    foto: '',
   })
 
   const [createdCard, setCreatedCard] = useState<{
@@ -104,6 +106,7 @@ export default function CriarCartao() {
           ...formData,
           horarios: formData.isFreelancer ? JSON.stringify([]) : JSON.stringify(formData.horarios),
           servicos: JSON.stringify(formData.servicos.filter(s => s.nome.trim())),
+          foto: formData.foto || null,
         }),
       })
 
@@ -316,6 +319,16 @@ export default function CriarCartao() {
                       Usado para editar seu cartão posteriormente
                     </p>
                   </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Foto de perfil (opcional)
+                    </label>
+                    <ImageUpload
+                      currentImage={formData.foto}
+                      onImageUpload={(imageUrl) => updateFormData('foto', imageUrl)}
+                    />
+                  </div>
                 </div>
 
                 <button
@@ -463,9 +476,17 @@ export default function CriarCartao() {
                 {/* Header do Card */}
                 <div className="bg-gradient-to-r from-green-500 to-green-600 p-8 text-white text-center">
                   <div className="mb-4">
-                    <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full mx-auto border-4 border-white flex items-center justify-center">
-                      <span className="text-4xl">👤</span>
-                    </div>
+                    {formData.foto ? (
+                      <img 
+                        src={formData.foto} 
+                        alt={formData.nomeGroomer || 'Foto de perfil'}
+                        className="w-24 h-24 rounded-full mx-auto border-4 border-white shadow-lg object-cover"
+                      />
+                    ) : (
+                      <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full mx-auto border-4 border-white flex items-center justify-center">
+                        <span className="text-4xl">👤</span>
+                      </div>
+                    )}
                   </div>
                   
                   <h1 className="text-2xl font-bold mb-1">
