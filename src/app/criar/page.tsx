@@ -181,7 +181,7 @@ export default function CriarCartao() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
@@ -458,71 +458,145 @@ export default function CriarCartao() {
             <div className="bg-white rounded-xl shadow-sm p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Preview do Cartão</h3>
               
-              <div className="bg-gradient-to-r from-green-400 to-green-600 rounded-xl p-6 text-white">
-                <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full mx-auto mb-3 flex items-center justify-center">
-                    <span className="text-2xl">👤</span>
+              {/* Card Principal */}
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                {/* Header do Card */}
+                <div className="bg-gradient-to-r from-green-500 to-green-600 p-8 text-white text-center">
+                  <div className="mb-4">
+                    <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full mx-auto border-4 border-white flex items-center justify-center">
+                      <span className="text-4xl">👤</span>
+                    </div>
                   </div>
-                  <h4 className="text-xl font-bold">
+                  
+                  <h1 className="text-2xl font-bold mb-1">
                     {formData.nomeGroomer || 'Seu Nome'}
-                  </h4>
+                  </h1>
+                  
                   {formData.nomeEstabelecimento && (
-                    <p className="text-green-100">
+                    <p className="text-green-100 text-lg">
                       {formData.nomeEstabelecimento}
                     </p>
                   )}
                 </div>
 
-                <div className="space-y-3">
-                  <button className="w-full bg-white bg-opacity-20 backdrop-blur py-2 rounded-lg font-medium">
-                    📱 WhatsApp
-                  </button>
+                {/* Botões de Contato */}
+                <div className="p-6 space-y-3">
+                  <div className="flex items-center justify-center gap-3 w-full bg-green-500 text-white py-4 rounded-xl font-medium text-lg">
+                    <span>Chamar no WhatsApp</span>
+                    {formData.telefone && (
+                      <span className="text-sm opacity-90">
+                        {formData.telefone.replace(/^(\+?55)?(\d{2})(\d{5})(\d{4})$/, (m, p1, ddd, parte1, parte2) => {
+                          return `(${ddd}) ${parte1}-${parte2}`;
+                        })}
+                      </span>
+                    )}
+                  </div>
+
                   {formData.instagram && (
-                    <button className="w-full bg-white bg-opacity-20 backdrop-blur py-2 rounded-lg font-medium">
-                      📷 Instagram
-                    </button>
+                    <div className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-xl font-medium text-lg">
+                      <span>Seguir no Instagram</span>
+                      <span className="text-sm opacity-90">@{formData.instagram}</span>
+                    </div>
                   )}
+
+                  <div className="flex items-center justify-center gap-3 w-full border-2 border-gray-300 text-gray-700 py-4 rounded-xl font-medium text-lg">
+                    {formData.telefone 
+                      ? formData.telefone.replace(/^(\+?55)?(\d{2})(\d{5})(\d{4})$/, (m, p1, ddd, parte1, parte2) => {
+                          return `(${ddd}) ${parte1}-${parte2}`;
+                        })
+                      : 'Seu telefone'
+                    }
+                  </div>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-white border-opacity-20 space-y-2 text-sm">
+                {/* Informações */}
+                <div className="px-6 pb-6 space-y-6">
+                  {/* Localização */}
                   {formData.endereco && (
-                    <p>📍 {formData.endereco}</p>
-                  )}
-                  
-                  {!formData.isFreelancer && formData.horarios.some(h => !h.fechado) && (
                     <div>
-                      <p className="font-medium">🕒 Horários:</p>
-                      {formData.horarios
-                        .filter(h => !h.fechado && h.abertura && h.fechamento)
-                        .slice(0, 2)
-                        .map(h => (
-                          <p key={h.dia} className="text-green-100">
-                            {h.dia}: {h.abertura} às {h.fechamento}
-                          </p>
-                        ))}
+                      <h3 className="flex items-center gap-2 text-lg font-bold text-gray-800 mb-3">
+                        Localização
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {formData.endereco}
+                      </p>
                     </div>
                   )}
 
+                  {/* Horários */}
+                  {!formData.isFreelancer && formData.horarios && formData.horarios.some(h => !h.fechado && h.abertura && h.fechamento) && (
+                    <div>
+                      <h3 className="flex items-center gap-2 text-lg font-bold text-gray-800 mb-3">
+                        Horários
+                      </h3>
+                      <div className="bg-gray-50 rounded-xl p-4 space-y-2">
+                        {formData.horarios
+                          .filter(h => !h.fechado && h.abertura && h.fechamento)
+                          .slice(0, 3)
+                          .map((h, index) => (
+                            <div key={index} className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">
+                                {h.dia}
+                              </span>
+                              <span className="text-gray-600">
+                                {h.abertura} às {h.fechamento}
+                              </span>
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Freelancer */}
                   {formData.isFreelancer && (
                     <div>
-                      <p className="font-medium">💼 Freelancer</p>
-                      <p className="text-green-100">Horários flexíveis</p>
+                      <h3 className="flex items-center gap-2 text-lg font-bold text-gray-800 mb-3">
+                        Disponibilidade
+                      </h3>
+                      <div className="bg-gray-50 rounded-xl p-4">
+                        <p className="text-gray-600">Horários flexíveis</p>
+                      </div>
                     </div>
                   )}
 
-                  {formData.servicos.some(s => s.nome) && (
+                  {/* Serviços */}
+                  {formData.servicos.some(s => s.nome.trim()) && (
                     <div>
-                      <p className="font-medium">✂️ Serviços:</p>
-                      {formData.servicos
-                        .filter(s => s.nome)
-                        .slice(0, 3)
-                        .map((s, i) => (
-                          <p key={i} className="text-green-100">
-                            {s.nome} {s.preco ? `- R$ ${s.preco}` : ''}
-                          </p>
-                        ))}
+                      <h3 className="flex items-center gap-2 text-lg font-bold text-gray-800 mb-3">
+                        Serviços
+                      </h3>
+                      <div className="space-y-3">
+                        {formData.servicos
+                          .filter(s => s.nome.trim())
+                          .slice(0, 3)
+                          .map((s, index) => (
+                            <div key={index} className="bg-gray-50 rounded-xl p-4 flex justify-between items-center">
+                              <span className="font-medium text-gray-700">
+                                {s.nome}
+                              </span>
+                              {s.preco && (
+                                <span className="text-green-600 font-bold text-lg">
+                                  R$ {s.preco}
+                                </span>
+                              )}
+                            </div>
+                          ))}
+                      </div>
                     </div>
                   )}
+
+                  {/* CTA para agendar */}
+                  <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white text-center">
+                    <h3 className="text-lg font-bold mb-2">
+                      Quer agendar um serviço?
+                    </h3>
+                    <p className="text-green-100 mb-4 text-sm">
+                      Entre em contato pelo WhatsApp e tire todas suas dúvidas!
+                    </p>
+                    <div className="bg-white text-green-600 px-6 py-3 rounded-lg font-bold">
+                      Agendar Agora
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

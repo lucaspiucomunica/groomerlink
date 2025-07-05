@@ -68,30 +68,47 @@ export default function Home() {
           </div>
 
           <div className="lg:text-center">
-            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm mx-auto">
-              <div className="text-center mb-6">
-                <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl">🐕</span>
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden max-w-sm mx-auto">
+              {/* Header do Card */}
+              <div className="bg-gradient-to-r from-green-500 to-green-600 p-8 text-white text-center">
+                <div className="mb-4">
+                  <div className="w-20 h-20 bg-white bg-opacity-20 rounded-full mx-auto border-4 border-white flex items-center justify-center">
+                    <span className="text-white text-2xl">🐕</span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">Maria Silva</h3>
-                <p className="text-gray-600">Pet Shop da Maria</p>
+                
+                <h3 className="text-xl font-bold mb-1">Maria Silva</h3>
+                <p className="text-green-100 text-lg">Pet Shop da Maria</p>
               </div>
 
-              <div className="space-y-3 mb-6">
-                <button className="w-full bg-green-500 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2">
-                  📱 WhatsApp
-                </button>
-                <button className="w-full bg-pink-500 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2">
-                  📷 Instagram
-                </button>
+              {/* Botões de Contato */}
+              <div className="p-6 space-y-3">
+                <div className="flex items-center justify-center gap-3 w-full bg-green-500 text-white py-3 rounded-xl font-medium">
+                  <span>Chamar no WhatsApp</span>
+                  <span className="text-sm opacity-90">(11) 99999-9999</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-medium">
+                  <span>Seguir no Instagram</span>
+                  <span className="text-sm opacity-90">@maria.silva</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 w-full border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-medium">
+                  (11) 99999-9999
+                </div>
               </div>
 
-              <div className="space-y-2 text-sm">
-                <p className="text-gray-600">📍 Rua das Flores, 123 - SP</p>
-                <p className="text-gray-600">🕒 Seg-Sex: 8h às 18h</p>
+              {/* Informações */}
+              <div className="px-6 pb-6 space-y-4">
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2">Localização</h4>
+                  <p className="text-gray-600 text-sm">Rua das Flores, 123 - SP</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2">Horários</h4>
+                  <p className="text-gray-600 text-sm">Seg-Sex: 8h às 18h</p>
+                </div>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="px-6 pb-6">
                 <p className="text-xs text-gray-400 text-center">groomerlink.com/maria-silva</p>
               </div>
             </div>
@@ -241,100 +258,168 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Exemplo 1: Pet Shop */}
-            <div className="bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-lg p-6 border border-green-100">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl">🐕</span>
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              {/* Header do Card */}
+              <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white text-center">
+                <div className="mb-4">
+                  <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full mx-auto border-4 border-white flex items-center justify-center">
+                    <span className="text-white text-2xl">🐕</span>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">Ana Petshop</h3>
-                <p className="text-gray-600">Banho e Tosa Premium</p>
+                
+                <h3 className="text-lg font-bold mb-1">Ana Petshop</h3>
+                <p className="text-green-100">Banho e Tosa Premium</p>
               </div>
 
-              <div className="space-y-3 mb-6">
-                <button className="w-full bg-green-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
-                  📱 WhatsApp
-                </button>
-                <button className="w-full bg-pink-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
-                  📷 Instagram
-                </button>
-                <button className="w-full bg-blue-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
-                  📧 Email
-                </button>
+              {/* Botões de Contato */}
+              <div className="p-6 space-y-3">
+                <div className="flex items-center justify-center gap-3 w-full bg-green-500 text-white py-3 rounded-xl font-medium text-sm">
+                  <span>Chamar no WhatsApp</span>
+                  <span className="text-xs opacity-90">(11) 99999-9999</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-medium text-sm">
+                  <span>Seguir no Instagram</span>
+                  <span className="text-xs opacity-90">@ana.petshop</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 w-full border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-medium text-sm">
+                  (11) 99999-9999
+                </div>
               </div>
 
-              <div className="space-y-2 text-sm">
-                <p className="text-gray-600">📍 Rua das Flores, 123 - SP</p>
-                <p className="text-gray-600">🕒 Seg-Sex: 8h às 18h</p>
-                <p className="text-gray-600">💰 Banho: R$ 25 | Tosa: R$ 35</p>
+              {/* Informações */}
+              <div className="px-6 pb-6 space-y-4">
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm">Localização</h4>
+                  <p className="text-gray-600 text-sm">Rua das Flores, 123 - SP</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm">Horários</h4>
+                  <p className="text-gray-600 text-sm">Seg-Sex: 8h às 18h</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm">Serviços</h4>
+                  <div className="space-y-2">
+                    <div className="bg-gray-50 rounded-lg p-3 flex justify-between items-center">
+                      <span className="text-gray-700 text-sm">Banho</span>
+                      <span className="text-green-600 font-bold text-sm">R$ 25</span>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-3 flex justify-between items-center">
+                      <span className="text-gray-700 text-sm">Tosa</span>
+                      <span className="text-green-600 font-bold text-sm">R$ 35</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="px-6 pb-6">
                 <p className="text-xs text-gray-400 text-center">groomerlink.com/ana-petshop</p>
               </div>
             </div>
 
             {/* Exemplo 2: Freelancer */}
-            <div className="bg-gradient-to-br from-purple-50 to-white rounded-2xl shadow-lg p-6 border border-purple-100">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl">✂️</span>
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              {/* Header do Card */}
+              <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white text-center">
+                <div className="mb-4">
+                  <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full mx-auto border-4 border-white flex items-center justify-center">
+                    <span className="text-white text-2xl">✂️</span>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">Carlos Freelancer</h3>
-                <p className="text-gray-600">Groomer Autônomo</p>
+                
+                <h3 className="text-lg font-bold mb-1">Carlos Freelancer</h3>
+                <p className="text-green-100">Groomer Autônomo</p>
               </div>
 
-              <div className="space-y-3 mb-6">
-                <button className="w-full bg-green-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
-                  📱 WhatsApp
-                </button>
-                <button className="w-full bg-pink-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
-                  📷 Instagram
-                </button>
-                <button className="w-full bg-red-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
-                  📅 Agendamento
-                </button>
+              {/* Botões de Contato */}
+              <div className="p-6 space-y-3">
+                <div className="flex items-center justify-center gap-3 w-full bg-green-500 text-white py-3 rounded-xl font-medium text-sm">
+                  <span>Chamar no WhatsApp</span>
+                  <span className="text-xs opacity-90">(21) 99999-9999</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-medium text-sm">
+                  <span>Seguir no Instagram</span>
+                  <span className="text-xs opacity-90">@carlos.freelancer</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 w-full border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-medium text-sm">
+                  (21) 99999-9999
+                </div>
               </div>
 
-              <div className="space-y-2 text-sm">
-                <p className="text-gray-600">📍 Atendimento domiciliar - RJ</p>
-                <p className="text-gray-600">🕒 Seg-Sab: 9h às 17h</p>
-                <p className="text-gray-600">💰 A partir de R$ 40</p>
+              {/* Informações */}
+              <div className="px-6 pb-6 space-y-4">
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm">Localização</h4>
+                  <p className="text-gray-600 text-sm">Atendimento domiciliar - RJ</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm">Disponibilidade</h4>
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <p className="text-gray-600 text-sm">Horários flexíveis</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm">Serviços</h4>
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <span className="text-gray-700 text-sm">A partir de R$ 40</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="px-6 pb-6">
                 <p className="text-xs text-gray-400 text-center">groomerlink.com/carlos-freelancer</p>
               </div>
             </div>
 
             {/* Exemplo 3: Clínica Veterinária */}
-            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-lg p-6 border border-blue-100">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl">🏥</span>
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              {/* Header do Card */}
+              <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white text-center">
+                <div className="mb-4">
+                  <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full mx-auto border-4 border-white flex items-center justify-center">
+                    <span className="text-white text-2xl">🏥</span>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">Clínica VetCare</h3>
-                <p className="text-gray-600">Veterinária & Estética</p>
+                
+                <h3 className="text-lg font-bold mb-1">Clínica VetCare</h3>
+                <p className="text-green-100">Veterinária & Estética</p>
               </div>
 
-              <div className="space-y-3 mb-6">
-                <button className="w-full bg-green-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
-                  📱 WhatsApp
-                </button>
-                <button className="w-full bg-pink-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
-                  📷 Instagram
-                </button>
-                <button className="w-full bg-orange-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
-                  🌐 Website
-                </button>
+              {/* Botões de Contato */}
+              <div className="p-6 space-y-3">
+                <div className="flex items-center justify-center gap-3 w-full bg-green-500 text-white py-3 rounded-xl font-medium text-sm">
+                  <span>Chamar no WhatsApp</span>
+                  <span className="text-xs opacity-90">(31) 99999-9999</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-medium text-sm">
+                  <span>Seguir no Instagram</span>
+                  <span className="text-xs opacity-90">@clinica.vetcare</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 w-full border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-medium text-sm">
+                  (31) 99999-9999
+                </div>
               </div>
 
-              <div className="space-y-2 text-sm">
-                <p className="text-gray-600">📍 Av. Principal, 456 - MG</p>
-                <p className="text-gray-600">🕒 Seg-Dom: 24h</p>
-                <p className="text-gray-600">💰 Consulte nossos preços</p>
+              {/* Informações */}
+              <div className="px-6 pb-6 space-y-4">
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm">Localização</h4>
+                  <p className="text-gray-600 text-sm">Av. Principal, 456 - MG</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm">Horários</h4>
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <p className="text-gray-600 text-sm">Seg-Dom: 24h</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm">Serviços</h4>
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <span className="text-gray-700 text-sm">Consulte nossos preços</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="px-6 pb-6">
                 <p className="text-xs text-gray-400 text-center">groomerlink.com/clinica-vetcare</p>
               </div>
             </div>
