@@ -67,7 +67,8 @@ export async function PUT(
       precos,
       emailEdicao,
       foto,
-      username
+      username,
+      isFreelancer
     } = body
 
     // Verificar se o cartão existe e se o email confere
@@ -122,6 +123,7 @@ export async function PUT(
         username: username || cartaoExistente.username,
         nomeGroomer,
         nomeEstabelecimento: nomeEstabelecimento || null,
+        isFreelancer: isFreelancer !== undefined ? isFreelancer : false,
         telefone,
         instagram: instagram || null,
         endereco,

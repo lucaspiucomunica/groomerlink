@@ -12,6 +12,7 @@ interface FormData {
   instagram: string
   endereco: string
   username: string
+  isFreelancer: boolean
   horarios: Array<{
     dia: string
     abertura: string
@@ -41,6 +42,7 @@ export default function EditarCartao() {
     instagram: '',
     endereco: '',
     username: '',
+    isFreelancer: false,
     horarios: MOCK_DATA.horarios,
     servicos: [{ nome: '', preco: 0 }],
   })
@@ -82,6 +84,7 @@ export default function EditarCartao() {
         instagram: cartao.instagram || '',
         endereco: cartao.endereco,
         username: cartao.username,
+        isFreelancer: cartao.isFreelancer || false,
         horarios: JSON.parse(cartao.horarios || '[]'),
         servicos: JSON.parse(cartao.servicos || '[{"nome":"","preco":0}]'),
         foto: cartao.foto || '',

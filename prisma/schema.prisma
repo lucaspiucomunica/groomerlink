@@ -15,6 +15,7 @@ model Cartao {
   username              String   @unique // para a URL
   nomeGroomer          String
   nomeEstabelecimento  String?
+  isFreelancer         Boolean  @default(false)
   foto                 String?
   telefone             String
   instagram            String?

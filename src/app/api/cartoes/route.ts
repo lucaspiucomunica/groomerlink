@@ -44,6 +44,7 @@ export async function POST(request: NextRequest) {
       precos,
       emailEdicao,
       foto,
+      isFreelancer,
       username: customUsername
     } = body
 
@@ -89,6 +90,7 @@ export async function POST(request: NextRequest) {
         username,
         nomeGroomer,
         nomeEstabelecimento: nomeEstabelecimento || null,
+        isFreelancer: isFreelancer || false,
         telefone,
         instagram: instagram || null,
         endereco,

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { APP_CONFIG, MOCK_DATA } from '@/lib/config'
 
@@ -11,6 +11,7 @@ interface FormData {
   instagram: string
   endereco: string
   emailEdicao: string
+  isFreelancer: boolean
   horarios: Array<{
     dia: string
     abertura: string
@@ -34,6 +35,7 @@ export default function CriarCartao() {
     instagram: '',
     endereco: '',
     emailEdicao: '',
+    isFreelancer: false,
     horarios: MOCK_DATA.horarios,
     servicos: [{ nome: '', preco: 0 }],
   })
@@ -43,6 +45,15 @@ export default function CriarCartao() {
     username: string
     url: string
   } | null>(null)
+
+  // Auto-preencher estabelecimento quando for freelancer
+  useEffect(() => {
+    if (formData.isFreelancer) {
+      setFormData(prev => ({ ...prev, nomeEstabelecimento: 'Freelancer' }))
+    } else {
+      setFormData(prev => ({ ...prev, nomeEstabelecimento: '' }))
+    }
+  }, [formData.isFreelancer])
 
   const updateFormData = (field: keyof FormData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -91,7 +102,7 @@ export default function CriarCartao() {
         },
         body: JSON.stringify({
           ...formData,
-          horarios: JSON.stringify(formData.horarios),
+          horarios: formData.isFreelancer ? JSON.stringify([]) : JSON.stringify(formData.horarios),
           servicos: JSON.stringify(formData.servicos.filter(s => s.nome.trim())),
         }),
       })
@@ -164,7 +175,7 @@ export default function CriarCartao() {
               <span className="ml-2 text-xl font-bold text-gray-900">GroomerLink</span>
             </Link>
             <div className="text-sm text-gray-500">
-              Passo {currentStep} de 3
+              Passo {formData.isFreelancer ? (currentStep === 3 ? 2 : currentStep) : currentStep} de {formData.isFreelancer ? 2 : 3}
             </div>
           </div>
         </div>
@@ -175,12 +186,14 @@ export default function CriarCartao() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-gray-700">Progresso</span>
-            <span className="text-sm text-gray-500">{Math.round((currentStep / 3) * 100)}%</span>
+            <span className="text-sm text-gray-500">
+              {Math.round((formData.isFreelancer ? (currentStep === 3 ? 2 : currentStep) : currentStep) / (formData.isFreelancer ? 2 : 3) * 100)}%
+            </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
               className="bg-green-600 h-2 rounded-full transition-all duration-300"
-              style={{ width: `${(currentStep / 3) * 100}%` }}
+              style={{ width: `${(formData.isFreelancer ? (currentStep === 3 ? 2 : currentStep) : currentStep) / (formData.isFreelancer ? 2 : 3) * 100}%` }}
             ></div>
           </div>
         </div>
@@ -195,6 +208,23 @@ export default function CriarCartao() {
                 </h2>
                 
                 <div className="space-y-4">
+                  <div>
+                    <label className="flex items-center gap-3 p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                      <input
+                        type="checkbox"
+                        checked={formData.isFreelancer}
+                        onChange={(e) => updateFormData('isFreelancer', e.target.checked)}
+                        className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                      />
+                      <span className="text-sm font-medium text-gray-700">
+                        Sou freelancer
+                      </span>
+                    </label>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Freelancers não precisam informar horários de funcionamento
+                    </p>
+                  </div>
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Seu nome completo *
@@ -216,9 +246,15 @@ export default function CriarCartao() {
                       type="text"
                       value={formData.nomeEstabelecimento}
                       onChange={(e) => updateFormData('nomeEstabelecimento', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500"
-                      placeholder="Ex: Pet Shop da Maria"
+                      disabled={formData.isFreelancer}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                      placeholder={formData.isFreelancer ? "Freelancer" : "Ex: Pet Shop da Maria"}
                     />
+                    {formData.isFreelancer && (
+                      <p className="text-xs text-gray-500 mt-1">
+                        Preenchido automaticamente para freelancers
+                      </p>
+                    )}
                   </div>
 
                   <div>
@@ -283,11 +319,11 @@ export default function CriarCartao() {
                 </div>
 
                 <button
-                  onClick={() => setCurrentStep(2)}
+                  onClick={() => setCurrentStep(formData.isFreelancer ? 3 : 2)}
                   disabled={!formData.nomeGroomer || !formData.telefone || !formData.endereco || !formData.emailEdicao}
                   className="w-full mt-6 bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                 >
-                  Próximo: Horários
+                  {formData.isFreelancer ? 'Próximo: Serviços' : 'Próximo: Horários'}
                 </button>
               </div>
             )}
@@ -400,7 +436,7 @@ export default function CriarCartao() {
 
                 <div className="flex gap-3 mt-6">
                   <button
-                    onClick={() => setCurrentStep(2)}
+                    onClick={() => setCurrentStep(formData.isFreelancer ? 1 : 2)}
                     className="flex-1 border border-gray-300 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
                   >
                     Voltar
@@ -453,7 +489,7 @@ export default function CriarCartao() {
                     <p>📍 {formData.endereco}</p>
                   )}
                   
-                  {formData.horarios.some(h => !h.fechado) && (
+                  {!formData.isFreelancer && formData.horarios.some(h => !h.fechado) && (
                     <div>
                       <p className="font-medium">🕒 Horários:</p>
                       {formData.horarios
@@ -464,6 +500,13 @@ export default function CriarCartao() {
                             {h.dia}: {h.abertura} às {h.fechamento}
                           </p>
                         ))}
+                    </div>
+                  )}
+
+                  {formData.isFreelancer && (
+                    <div>
+                      <p className="font-medium">💼 Freelancer</p>
+                      <p className="text-green-100">Horários flexíveis</p>
                     </div>
                   )}
 

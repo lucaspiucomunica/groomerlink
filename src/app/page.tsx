@@ -227,6 +227,133 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Examples Section */}
+      <section id="exemplo" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Veja exemplos reais
+            </h2>
+            <p className="text-xl text-gray-600">
+              Cartões digitais para diferentes tipos de profissionais
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Exemplo 1: Pet Shop */}
+            <div className="bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-lg p-6 border border-green-100">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-white text-2xl">🐕</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">Ana Petshop</h3>
+                <p className="text-gray-600">Banho e Tosa Premium</p>
+              </div>
+
+              <div className="space-y-3 mb-6">
+                <button className="w-full bg-green-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
+                  📱 WhatsApp
+                </button>
+                <button className="w-full bg-pink-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
+                  📷 Instagram
+                </button>
+                <button className="w-full bg-blue-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
+                  📧 Email
+                </button>
+              </div>
+
+              <div className="space-y-2 text-sm">
+                <p className="text-gray-600">📍 Rua das Flores, 123 - SP</p>
+                <p className="text-gray-600">🕒 Seg-Sex: 8h às 18h</p>
+                <p className="text-gray-600">💰 Banho: R$ 25 | Tosa: R$ 35</p>
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-gray-100">
+                <p className="text-xs text-gray-400 text-center">groomerlink.com/ana-petshop</p>
+              </div>
+            </div>
+
+            {/* Exemplo 2: Freelancer */}
+            <div className="bg-gradient-to-br from-purple-50 to-white rounded-2xl shadow-lg p-6 border border-purple-100">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-white text-2xl">✂️</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">Carlos Freelancer</h3>
+                <p className="text-gray-600">Groomer Autônomo</p>
+              </div>
+
+              <div className="space-y-3 mb-6">
+                <button className="w-full bg-green-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
+                  📱 WhatsApp
+                </button>
+                <button className="w-full bg-pink-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
+                  📷 Instagram
+                </button>
+                <button className="w-full bg-red-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
+                  📅 Agendamento
+                </button>
+              </div>
+
+              <div className="space-y-2 text-sm">
+                <p className="text-gray-600">📍 Atendimento domiciliar - RJ</p>
+                <p className="text-gray-600">🕒 Seg-Sab: 9h às 17h</p>
+                <p className="text-gray-600">💰 A partir de R$ 40</p>
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-gray-100">
+                <p className="text-xs text-gray-400 text-center">groomerlink.com/carlos-freelancer</p>
+              </div>
+            </div>
+
+            {/* Exemplo 3: Clínica Veterinária */}
+            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-lg p-6 border border-blue-100">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-white text-2xl">🏥</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">Clínica VetCare</h3>
+                <p className="text-gray-600">Veterinária & Estética</p>
+              </div>
+
+              <div className="space-y-3 mb-6">
+                <button className="w-full bg-green-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
+                  📱 WhatsApp
+                </button>
+                <button className="w-full bg-pink-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
+                  📷 Instagram
+                </button>
+                <button className="w-full bg-orange-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 text-sm">
+                  🌐 Website
+                </button>
+              </div>
+
+              <div className="space-y-2 text-sm">
+                <p className="text-gray-600">📍 Av. Principal, 456 - MG</p>
+                <p className="text-gray-600">🕒 Seg-Dom: 24h</p>
+                <p className="text-gray-600">💰 Consulte nossos preços</p>
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-gray-100">
+                <p className="text-xs text-gray-400 text-center">groomerlink.com/clinica-vetcare</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-600 mb-6">
+              Crie o seu cartão digital em minutos e comece a compartilhar
+            </p>
+            <Link 
+              href="/criar"
+              className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-medium text-lg transition-colors"
+            >
+              Criar Meu Cartão Agora
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-green-600 py-16">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">

@@ -73,7 +73,7 @@ async function testarAPI() {
     const dadosEdicao = {
       ...dadosCartaoTeste,
       nomeGroomer: 'Maria Silva Santos',
-      nomeEstabelecimento: 'Pet Shop da Maria - Atualizado',
+      nomeEstabelecimento: 'Pet Shop da Maria',
       emailEdicao: dadosCartaoTeste.emailEdicao // Importante: incluir o email para verificação
     }
 
