@@ -88,16 +88,26 @@ Busca um cartão pelo username para exibição pública.
 ### 3. Buscar Cartão para Edição
 **GET** `/api/cartoes/editar/[id]?email=[email]`
 
-Busca um cartão para edição (requer email de confirmação).
+Busca um cartão para edição por ID (requer email de confirmação).
 
 **Exemplo:** `GET /api/cartoes/editar/cll1234567890?email=maria@email.com`
+
+**GET** `/api/cartoes/editar/username/[username]?email=[email]`
+
+Busca um cartão para edição por username (requer email de confirmação).
+
+**Exemplo:** `GET /api/cartoes/editar/username/maria-silva?email=maria@email.com`
 
 **Resposta:** Mesma estrutura da criação, mas com dados atuais.
 
 ### 4. Atualizar Cartão
 **PUT** `/api/cartoes/editar/[id]`
 
-Atualiza um cartão existente.
+Atualiza um cartão existente por ID.
+
+**PUT** `/api/cartoes/editar/username/[username]`
+
+Atualiza um cartão existente por username.
 
 **Body:** Mesmo formato da criação, mas deve incluir o `emailEdicao` para verificação.
 
@@ -198,8 +208,10 @@ Todas as APIs retornam erros no formato:
 
 - ✅ **POST /api/cartoes** - Criar cartão
 - ✅ **GET /api/cartoes/[username]** - Buscar cartão público
-- ✅ **GET /api/cartoes/editar/[id]** - Buscar para edição
-- ✅ **PUT /api/cartoes/editar/[id]** - Atualizar cartão
+- ✅ **GET /api/cartoes/editar/[id]** - Buscar para edição (por ID)
+- ✅ **GET /api/cartoes/editar/username/[username]** - Buscar para edição (por username)
+- ✅ **PUT /api/cartoes/editar/[id]** - Atualizar cartão (por ID)
+- ✅ **PUT /api/cartoes/editar/username/[username]** - Atualizar cartão (por username)
 - ✅ **POST /api/upload** - Upload de foto
 - ✅ **GET /api/cartoes** - Listar cartões (debug)
 
@@ -209,7 +221,7 @@ Com as APIs funcionando, agora podemos criar:
 
 1. **Formulário de criação** (`/criar`)
 2. **Página pública do cartão** (`/[username]`)
-3. **Sistema de edição** (`/editar/[id]`)
+3. **Sistema de edição** (`/editar/[id]` e `/editar/[username]`)
 4. **Página inicial** com explicação
 
 As APIs estão prontas para receber dados dos formulários e servir as páginas públicas!

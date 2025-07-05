@@ -143,6 +143,32 @@ export default function CriarCartao() {
               groomerlink.com{createdCard.url}
             </p>
           </div>
+          
+          {/* Informações importantes - Link de edição */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-sm">✏️</span>
+              </div>
+              <div className="text-left">
+                <h3 className="font-semibold text-blue-900 mb-2">
+                  Para editar seu cartão:
+                </h3>
+                <p className="text-sm text-blue-800 mb-3">
+                  Salve este link para editar suas informações no futuro:
+                </p>
+                <div className="bg-white p-3 rounded-lg border border-blue-200">
+                  <p className="font-mono text-blue-600 font-medium break-all text-sm">
+                    groomerlink.com/editar/{createdCard.username}
+                  </p>
+                </div>
+                <p className="text-xs text-blue-700 mt-2">
+                  💡 Você precisará do email cadastrado para confirmar a edição
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="space-y-3">
             <Link 
               href={createdCard.url}
@@ -151,15 +177,18 @@ export default function CriarCartao() {
               Ver Meu Cartão
             </Link>
             <Link 
+              href={`/editar/${createdCard.username}`}
+              className="block w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            >
+              Editar Cartão
+            </Link>
+            <Link 
               href="/"
               className="block w-full border border-gray-300 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
             >
               Voltar ao Início
             </Link>
           </div>
-          <p className="text-xs text-gray-500 mt-6">
-            💡 Salve este link! Você precisará do email cadastrado para editar depois.
-          </p>
         </div>
       </div>
     )

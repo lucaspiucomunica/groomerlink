@@ -204,16 +204,32 @@ export default async function CartaoPublico({
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-8">
-          <p className="text-sm text-gray-500 mb-2">
-            Gostou deste cartão digital?
-          </p>
-          <a 
-            href="/"
-            className="inline-block text-green-600 hover:text-green-700 font-medium text-sm"
-          >
-            Crie o seu gratuitamente no GroomerLink →
-          </a>
+        <div className="text-center mt-8 space-y-4">
+          {/* Link de edição para o dono do cartão */}
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-600 mb-2">
+              Este é o seu cartão?
+            </p>
+            <a 
+              href={`/editar/${username}`}
+              className="inline-block text-green-600 hover:text-green-700 font-medium text-sm"
+            >
+              ✏️ Editar informações →
+            </a>
+          </div>
+
+          {/* Call to action para criar cartão */}
+          <div>
+            <p className="text-sm text-gray-500 mb-2">
+              Gostou deste cartão digital?
+            </p>
+            <a 
+              href="/"
+              className="inline-block text-green-600 hover:text-green-700 font-medium text-sm"
+            >
+              Crie o seu gratuitamente no GroomerLink →
+            </a>
+          </div>
         </div>
       </div>
     </div>

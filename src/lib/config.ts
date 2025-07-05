@@ -15,7 +15,7 @@ export const APP_CONFIG = {
     urls: {
       home: '/',
       criar: '/criar',
-      editar: (id: string) => `/editar/${id}`,
+      editar: (param: string) => `/editar/${param}`, // Funciona tanto com ID quanto username
       cartao: (username: string) => `/${username}`,
     },
     
@@ -25,6 +25,7 @@ export const APP_CONFIG = {
       upload: '/api/upload',
       cartaoPorUsername: (username: string) => `/api/cartoes/${username}`,
       editarCartao: (id: string) => `/api/cartoes/editar/${id}`,
+      editarCartaoUsername: (username: string) => `/api/cartoes/editar/username/${username}`,
     },
     
     // Mensagens padrão

@@ -29,7 +29,7 @@ interface FormData {
 
 export default function EditarCartao() {
   const params = useParams()
-  const id = params?.id as string
+  const param = params?.param as string
 
   const [step, setStep] = useState<'verify' | 'edit' | 'success'>('verify')
   const [email, setEmail] = useState('')
@@ -55,6 +55,10 @@ export default function EditarCartao() {
     url: string
   } | null>(null)
 
+  // Detectar se é ID ou username
+  const isId = param.startsWith('cl') || param.length > 20 // IDs do Prisma começam com 'cl' ou são muito longos
+  const isUsername = !isId
+
   const verifyEmail = async () => {
     if (!email) {
       setError('Digite seu email')
@@ -65,7 +69,12 @@ export default function EditarCartao() {
     setError('')
 
     try {
-      const response = await fetch(`/api/cartoes/editar/${id}?email=${encodeURIComponent(email)}`)
+      // Usar API diferente dependendo do tipo
+      const apiUrl = isId 
+        ? `/api/cartoes/editar/${param}?email=${encodeURIComponent(email)}`
+        : `/api/cartoes/editar/username/${param}?email=${encodeURIComponent(email)}`
+      
+      const response = await fetch(apiUrl)
       
       if (!response.ok) {
         if (response.status === 404) {
@@ -141,7 +150,12 @@ export default function EditarCartao() {
     setError('')
     
     try {
-      const response = await fetch(`/api/cartoes/editar/${id}`, {
+      // Usar API diferente dependendo do tipo
+      const apiUrl = isId 
+        ? `/api/cartoes/editar/${param}`
+        : `/api/cartoes/editar/username/${param}`
+      
+      const response = await fetch(apiUrl, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -181,8 +195,13 @@ export default function EditarCartao() {
               <span className="text-green-600 text-2xl">📧</span>
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              Verificar Email
+              Editar Cartão
             </h1>
+            <p className="text-gray-600 mb-4">
+              Você está editando o cartão: <span className="font-mono text-green-600">
+                {isUsername ? `@${param}` : `ID: ${param}`}
+              </span>
+            </p>
             <p className="text-gray-600">
               Digite o email que você usou ao criar o cartão
             </p>
@@ -282,7 +301,7 @@ export default function EditarCartao() {
               <span className="ml-2 text-xl font-bold text-gray-900">GroomerLink</span>
             </Link>
             <div className="text-sm text-gray-500">
-              Editando cartão
+              {isUsername ? `Editando @${param}` : 'Editando cartão'}
             </div>
           </div>
         </div>
@@ -555,4 +574,4 @@ export default function EditarCartao() {
       </div>
     </div>
   )
-}
+} 
