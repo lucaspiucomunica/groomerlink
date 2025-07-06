@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { MOCK_DATA } from '@/lib/config'
 import ImageUpload from '@/components/ImageUpload'
+import { formatWhatsAppUrl, formatInstagramUrl } from '@/lib/utils'
 
 interface FormData {
   nomeGroomer: string
@@ -307,7 +308,7 @@ export default function EditarCartao() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Formulário */}
           <div className="bg-white rounded-xl shadow-sm p-6">
@@ -530,42 +531,173 @@ export default function EditarCartao() {
             <div className="bg-white rounded-xl shadow-sm p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Preview Atualizado</h3>
               
-              <div className="bg-gradient-to-r from-green-400 to-green-600 rounded-xl p-6 text-white">
-                <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full mx-auto mb-3 flex items-center justify-center">
-                    <span className="text-2xl">👤</span>
+              {/* Versão exata da página pública */}
+              <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-4">
+                {/* Header com branding discreto */}
+                <div className="text-center py-2">
+                  <p className="text-xs text-gray-500">
+                    Cartão digital criado com <span className="text-green-600 font-medium">GroomerLink</span>
+                  </p>
+                </div>
+
+                {/* Card Principal */}
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                  {/* Header do Card */}
+                  <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white text-center">
+                    <div className="mb-4">
+                      {formData.foto ? (
+                        <img 
+                          src={formData.foto} 
+                          alt={formData.nomeGroomer || 'Perfil'}
+                          className="w-16 h-16 rounded-full mx-auto border-4 border-white shadow-lg object-cover"
+                        />
+                      ) : (
+                        <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full mx-auto border-4 border-white flex items-center justify-center">
+                          <span className="text-2xl">👤</span>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <h1 className="text-lg font-bold mb-1">
+                      {formData.nomeGroomer || 'Seu Nome'}
+                    </h1>
+                    
+                    {formData.nomeEstabelecimento && (
+                      <p className="text-green-100 text-sm">
+                        {formData.nomeEstabelecimento}
+                      </p>
+                    )}
                   </div>
-                  <h4 className="text-xl font-bold">
-                    {formData.nomeGroomer || 'Seu Nome'}
-                  </h4>
-                  {formData.nomeEstabelecimento && (
-                    <p className="text-green-100">
-                      {formData.nomeEstabelecimento}
-                    </p>
-                  )}
+
+                  {/* Botões de Contato */}
+                  <div className="p-4 space-y-2">
+                    <div className="flex items-center justify-center gap-2 w-full bg-green-500 text-white py-3 rounded-xl font-medium text-sm">
+                      <span>Chamar no WhatsApp</span>
+                      <span className="text-xs opacity-90">
+                        {formData.telefone
+                          ? formData.telefone.replace(/^(\+?55)?(\d{2})(\d{5})(\d{4})$/, (m, p1, ddd, parte1, parte2) => {
+                              return `(${ddd}) ${parte1}-${parte2}`;
+                            })
+                          : '(11) 99999-9999'}
+                      </span>
+                    </div>
+
+                    {formData.instagram && (
+                      <div className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-xl font-medium text-sm">
+                        <span>Seguir no Instagram</span>
+                        <span className="text-xs opacity-90">@{formData.instagram}</span>
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-center gap-2 w-full border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-medium text-sm">
+                      {formData.telefone
+                        ? formData.telefone.replace(/^(\+?55)?(\d{2})(\d{5})(\d{4})$/, (m, p1, ddd, parte1, parte2) => {
+                            const prefixo = p1 ? '+55 ' : '';
+                            return `${prefixo}(${ddd}) ${parte1}-${parte2}`;
+                          })
+                        : '+55 (11) 99999-9999'}
+                    </div>
+                  </div>
+
+                  {/* Informações */}
+                  <div className="px-4 pb-4 space-y-4">
+                    {/* Localização */}
+                    {formData.endereco && (
+                      <div>
+                        <h3 className="flex items-center gap-2 text-sm font-bold text-gray-800 mb-2">
+                          Localização
+                        </h3>
+                        <p className="text-gray-600 text-xs leading-relaxed">
+                          {formData.endereco}
+                        </p>
+                        <p className="text-green-600 font-medium text-xs mt-1">
+                          Ver no Google Maps →
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Horários */}
+                    {formData.horarios && formData.horarios.length > 0 && formData.horarios.some(h => !h.fechado) && (
+                      <div>
+                        <h3 className="flex items-center gap-2 text-sm font-bold text-gray-800 mb-2">
+                          Horários
+                        </h3>
+                        <div className="bg-gray-50 rounded-xl p-3 space-y-1">
+                          {formData.horarios.slice(0, 3).map((horario, index) => (
+                            <div key={index} className="flex justify-between items-center text-xs">
+                              <span className="font-medium text-gray-700">
+                                {horario.dia}
+                              </span>
+                              <span className="text-gray-600">
+                                {horario.fechado 
+                                  ? 'Fechado' 
+                                  : `${horario.abertura} às ${horario.fechamento}`
+                                }
+                              </span>
+                            </div>
+                          ))}
+                          {formData.horarios.length > 3 && (
+                            <div className="text-xs text-gray-500 text-center pt-1">
+                              +{formData.horarios.length - 3} mais
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Serviços */}
+                    {formData.servicos && formData.servicos.length > 0 && formData.servicos.some(s => s.nome.trim()) && (
+                      <div>
+                        <h3 className="flex items-center gap-2 text-sm font-bold text-gray-800 mb-2">
+                          Serviços
+                        </h3>
+                        <div className="space-y-2">
+                          {formData.servicos.filter(s => s.nome.trim()).slice(0, 3).map((servico, index) => (
+                            <div key={index} className="bg-gray-50 rounded-xl p-3 flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-xs">
+                                {servico.nome}
+                              </span>
+                              {servico.preco && servico.preco > 0 && (
+                                <span className="text-green-600 font-bold text-sm">
+                                  R$ {servico.preco}
+                                </span>
+                              )}
+                            </div>
+                          ))}
+                          {formData.servicos.filter(s => s.nome.trim()).length > 3 && (
+                            <div className="text-xs text-gray-500 text-center">
+                              +{formData.servicos.filter(s => s.nome.trim()).length - 3} mais serviços
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* CTA para agendar */}
+                    <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-4 text-white text-center">
+                      <h3 className="text-sm font-bold mb-1">
+                        Quer agendar um serviço?
+                      </h3>
+                      <p className="text-green-100 mb-3 text-xs">
+                        Entre em contato pelo WhatsApp e tire todas suas dúvidas!
+                      </p>
+                      <div className="bg-white text-green-600 px-4 py-2 rounded-lg font-bold text-xs">
+                        Agendar Agora
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="space-y-3">
-                  <button className="w-full bg-white bg-opacity-20 backdrop-blur py-2 rounded-lg font-medium">
-                    📱 WhatsApp
-                  </button>
-                  {formData.instagram && (
-                    <button className="w-full bg-white bg-opacity-20 backdrop-blur py-2 rounded-lg font-medium">
-                      📷 Instagram
-                    </button>
-                  )}
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-white border-opacity-20 space-y-2 text-sm">
-                  {formData.endereco && (
-                    <p>📍 {formData.endereco}</p>
-                  )}
-                  
-                  {formData.username && (
-                    <p className="text-green-100">
-                      🔗 groomerlink.com/{formData.username}
+                {/* Footer */}
+                <div className="text-center mt-4 space-y-2">
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">
+                      Gostou deste cartão digital?
                     </p>
-                  )}
+                    <p className="text-green-600 font-medium text-xs">
+                      Crie o seu gratuitamente no GroomerLink →
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
